@@ -1,4 +1,4 @@
-type Guitar = {
+export type Guitar = {
     id: number;
     name: string;
     image: string;
@@ -6,7 +6,7 @@ type Guitar = {
     price : number;
 }
 
-type GuitarProps = {
+export type GuitarProps = {
     guitar: Guitar,
     addToCart: (type: Guitar) => void
 }
