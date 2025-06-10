@@ -1,6 +1,6 @@
 import {useState, useEffect, useMemo } from "react"
 import { db } from "../data/db.js";
-import type {CarItem} from '../types'
+import type {CarItem, Guitar} from '../types'
 
 /**
  * Creamos un hook custom para el manejo del carrito
@@ -28,7 +28,7 @@ export const useCart = () =>{
       }, [cart])
     
       //creamos la funcion que añade un elemento al carrito
-      function  addToCart(item){
+      function  addToCart(item : Guitar){
     
         //almacenamos la posicion del elemento en el carrito
         const itemExist = cart.findIndex((guitar) => guitar.id === item.id)
@@ -39,14 +39,13 @@ export const useCart = () =>{
             setCart(updateCart)
           }
         }else{
-          item.quantity = 1
-          console.log(item.quantity);
-          setCart([...cart, item])
+          const newItem : CarItem = {...item, quantity: 1}
+          setCart([...cart, newItem])
         }
         
       }
     
-      function increaseQuantity(id){
+      function increaseQuantity(id : Guitar['id']){
         const updateCart = cart.map(item =>{
           if(item.id === id && item.quantity < MAX_ELEM){
             return{
@@ -59,7 +58,7 @@ export const useCart = () =>{
         setCart(updateCart)
       }
     
-      function decreaseQuantity(id){
+      function decreaseQuantity(id : Guitar['id']){
         const updateCart = cart.map(item =>{
           if(item.id === id && item.quantity > MIN_ELEM){
             return{
@@ -72,7 +71,7 @@ export const useCart = () =>{
         setCart(updateCart)
       }
     
-      function removeFromCart(id){
+      function removeFromCart(id : Guitar['id']){
         setCart(prevCart => prevCart.filter(guitar => guitar.id !=id))
       }
     
