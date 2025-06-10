@@ -1,6 +1,6 @@
 import {useState, useEffect, useMemo } from "react"
 import { db } from "../data/db.js";
-
+import type {CarItem} from '../types'
 
 /**
  * Creamos un hook custom para el manejo del carrito
@@ -10,7 +10,7 @@ export const useCart = () =>{
     //creamos una funcion para que al entrar al sitio nos mire en la bbdd
       //  si tenemos algo almacenado y nos lo devuelve, 
       // caso contraro nos inicia el state
-      const initialCart = () => {
+      const initialCart = () : CarItem[] => {
          const localStorageCart = localStorage.getItem('cart')
          return localStorageCart ? JSON.parse(localStorageCart) : []
       }
