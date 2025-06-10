@@ -10,6 +10,12 @@ export type CarItem = Guitar &{
     quantity: number;
 }
 
+//seleccionamos algunos datos unicamente
+
+export type CarItem = Pick<Guitar, 'id' | 'name' | 'price' > &{
+    quantity : number;
+}
+
 //Metodo con interface
 // export interface CarItem extends Guitar {
 //     quantity: number;
